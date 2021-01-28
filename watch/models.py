@@ -9,13 +9,14 @@ class neighbourhood(models.Model):
     securitycontact = models.CharField(max_length=13)
     healthcontact = models.CharField(max_length=13)
     Occupantscount = models.IntegerField()
+from django.db import models
+from django.contrib.auth.models import User
+import cloudinary
+from cloudinary.models import CloudinaryField
+from tinymce.models import HTMLField
 
-    def savehood(self):
-        self.save()
-
-    def deletehood(self):
-        self.delete()
-
-    def search(cls, searchterm):
-        searchresults = cls.objects.filter(Name = searchterm)
-        return searchresults
+class Neighbourhood(models.Model):
+    name = models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    occupantsCount = models.IntegerField(default=0)
+    admin = models.ForeignKey(User,on_delete=models.CASCADE)
