@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/ian/Documents/Moringa/Django/Neighbourhood-watch/virtual"
+set -gx VIRTUAL_ENV "/home/moringa/Documents/IPs/Neighbourhood-watch/virtual"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

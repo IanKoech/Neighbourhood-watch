@@ -1,4 +1,4 @@
-#!/home/ian/Documents/Moringa/Django/Neighbourhood-watch/virtual/bin/python
+#!/home/moringa/Documents/IPs/Neighbourhood-watch/virtual/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
