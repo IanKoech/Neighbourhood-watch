@@ -35,3 +35,8 @@ def loginpage(request):
 def logoutuser(request):
     logout(request)
     return redirect(loginpage)
+
+def showUsers(request):
+    '''
+    Method displays users from System admin
+    '''
