@@ -6,10 +6,11 @@ from .forms import *
 from django.contrib.auth.models import User
 
 # Create your views here.
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login')
 def index(request):
     return render(request, 'all-hoody/index.html')
 
+@login_required(login_url='/accounts/login')
 def edit_profile(request, username):
     user = User.objects.get(username=username)
     if request.method == 'POST':
@@ -22,9 +23,11 @@ def edit_profile(request, username):
         
     return render(request, 'all-hoody/create_profile.html', {'form': form})
 
+@login_required(login_url='/accounts/login')
 def profile(request, username):
     return render(request, 'all-hoody/profile.html')
 
+@login_required(login_url='/accounts/login')
 def create_post(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
     if request.method == 'POST':
@@ -39,7 +42,7 @@ def create_post(request, hood_id):
         form = PostForm()
     return render(request, 'all-hoody/post.html', {'form': form})
 
-
+@login_required(login_url='/accounts/login')
 def neighbourhoods(request):
     all_hoods = Neighbourhood.objects.all()
     all_hoods = all_hoods[::-1]
@@ -48,6 +51,7 @@ def neighbourhoods(request):
     }
     return render(request, 'all-hoody/neighbourhoods.html', params)
 
+@login_required(login_url='/accounts/login')
 def create_neighbourhood(request):
     if request.method == 'POST':
         form = NeighbourHoodForm(request.POST, request.FILES)
@@ -60,18 +64,21 @@ def create_neighbourhood(request):
         form = NeighbourHoodForm()
     return render(request, 'all-hoody/newhood.html', {'form': form})
 
+@login_required(login_url='/accounts/login')
 def join_neighbourhood(request, id):
     neighbourhood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = neighbourhood
     request.user.profile.save()
     return redirect('hood')
 
+@login_required(login_url='/accounts/login')
 def leave_neighbourhood(request, id):
     hood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = None
     request.user.profile.save()
     return redirect('hood')
 
+@login_required(login_url='/accounts/login')
 def single_neighbourhood(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
     business = Business.objects.filter(neighbourhood=hood)
@@ -96,6 +103,7 @@ def single_neighbourhood(request, hood_id):
     return render(request, 'all-hoody/single_hood.html', params)
 
 
+@login_required(login_url='/accounts/login')
 def create_post(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
     if request.method == 'POST':
