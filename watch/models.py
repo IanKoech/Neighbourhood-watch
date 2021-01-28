@@ -33,4 +33,19 @@ class Business(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
     business_email = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f'{self.business_name} business'
     
+    def save_business(self):
+        self.save()
+        
+    def delete_business(self):
+        self.delete() 
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    text = models.TextField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default = '')
+    date = models.DateField(auto_now_add=True)
+    neighbourhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE, default='', null=True, blank=True)
